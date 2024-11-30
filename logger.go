@@ -70,3 +70,10 @@ func (logger *Logger) WithAttrs(attrs []slog.Attr) slog.Handler {
 	return &l
 }
 
+func (logger *Logger) WithGroup(name string) slog.Handler {
+	l := *logger
+	l.group = []byte(prefix(string(logger.group), name))
+
+	return &l
+}
+
