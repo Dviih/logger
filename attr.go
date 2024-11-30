@@ -26,3 +26,16 @@ func (logger *Logger) attr1(s string, attribute slog.Attr) error {
 	return nil
 }
 
+
+func chanDir(dir reflect.ChanDir) string {
+	switch dir {
+	case reflect.BothDir:
+		return "bidirectional"
+	case reflect.RecvDir:
+		return "receiver"
+	case reflect.SendDir:
+		return "sender"
+	}
+
+	return ""
+}

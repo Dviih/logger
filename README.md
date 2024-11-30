@@ -13,6 +13,7 @@
 - **_false**: text for false boolean.
 
 ## Functions
+- **chanDir**: returns a string with the direction of the channel.
 - **prefix**: group and attributes names for children of them.
 
 ---
@@ -32,4 +33,5 @@
 - **WithAttrs**: pushes attributes into `logger.attributes`
 - **WithGroup**: groups a slog but rather add a prefix to it.
 - **write**: writes string, byte(s) to writer and handles errors and size.
+- **attr1**: used to parse name and arrows (used to not repeat code at all).
 #### Made for Gophers by @Dviih
