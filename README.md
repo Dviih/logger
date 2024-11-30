@@ -9,6 +9,9 @@
 - **info**: text for `Info` message.
 - **warn**: text for `Warn` message.
 - **_error**: text for `Error` message.
+- **_true**: text for true boolean.
+- **_false**: text for false boolean.
+
 ## Functions
 - **prefix**: group and attributes names for children of them.
 
