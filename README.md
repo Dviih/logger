@@ -30,6 +30,7 @@
 
 ### Methods
 - **Enabled**: returns if requested level can be printed compared to `logger.level`.
+- **Handle**: handles the printing of a log based on provided `slog.Record`.
 - **WithAttrs**: pushes attributes into `logger.attributes`
 - **WithGroup**: groups a slog but rather add a prefix to it.
 - **write**: writes string, byte(s) to writer and handles errors and size.
