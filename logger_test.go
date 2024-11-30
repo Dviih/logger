@@ -50,3 +50,7 @@ func TestLoggerUintptr(t *testing.T) {
 	test.Info("a uintptr", slog.Any("pointer", unsafe.Pointer(&i)))
 }
 
+func TestLoggerComplex(t *testing.T) {
+	test.Debug("a complex number", slog.Any("number", complex(13, 256)))
+}
+
