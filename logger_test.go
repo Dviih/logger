@@ -58,3 +58,7 @@ func TestLoggerSlice(t *testing.T) {
 	test.Warn("a slice of uint64", slog.Any("numbers", []uint64{128, 256, 512, 1024}))
 }
 
+func TestLoggerChan(t *testing.T) {
+	test.Info("a channel", slog.Any("chan", make(chan int, 64)))
+}
+
