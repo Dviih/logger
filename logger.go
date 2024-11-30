@@ -19,6 +19,23 @@
 
 package logger
 
+import (
+	"github.com/Dviih/Array"
+	"io"
+	"log/slog"
+	"sync"
+)
+
+type Logger struct {
+	writer io.Writer
+
+	time  string
+	level slog.Level
+
+	attributes *Array.Array[slog.Attr]
+	group      []byte
+}
+
 const (
 	Time = "02 Jan 06 15:04:05 MST"
 )

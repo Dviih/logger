@@ -17,4 +17,14 @@
 
 ---
 
+## Logger
+### A structure that contains options required for printing and implements `slog.Handler` interface
+
+### Properties
+- **writer**: stores an `io.Writer` interface.
+- **time**: time formatting.
+- **level**: minimum level required for printing.
+- **attributes**: array of additional attributes.
+- **group**: slog group name.
+
 #### Made for Gophers by @Dviih
