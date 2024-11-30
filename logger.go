@@ -21,6 +21,7 @@ package logger
 
 import (
 	"context"
+	"errors"
 	"github.com/Dviih/Array"
 	"io"
 	"log/slog"
@@ -75,5 +76,31 @@ func (logger *Logger) WithGroup(name string) slog.Handler {
 	l.group = []byte(prefix(string(logger.group), name))
 
 	return &l
+}
+
+func (logger *Logger) write(v interface{}) error {
+	var data []byte
+
+	switch v := v.(type) {
+	case []byte:
+		data = v
+	case byte:
+		data = []byte{v}
+	case string:
+		data = []byte(v)
+	default:
+		panic("not string or byte(s)")
+	}
+
+	n, err := logger.writer.Write(data)
+	if err != nil {
+		return err
+	}
+
+	if n != len(data) {
+		return errors.New("wrote less")
+	}
+
+	return nil
 }
 
