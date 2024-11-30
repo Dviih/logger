@@ -29,3 +29,19 @@ const message = "a test message"
 
 var test = slog.New(New(os.Stdout, Time, slog.LevelDebug))
 
+func TestLoggerDebug(t *testing.T) {
+	test.Debug(message)
+}
+
+func TestLoggerInfo(t *testing.T) {
+	test.Info(message)
+}
+
+func TestLoggerWarn(t *testing.T) {
+	test.Warn(message)
+}
+
+func TestLoggerError(t *testing.T) {
+	test.Error(message)
+}
+
