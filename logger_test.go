@@ -76,3 +76,9 @@ func TestLoggerMap(t *testing.T) {
 	}))
 }
 
+func TestLoggerStruct(t *testing.T) {
+	test.Warn("a struct", slog.Any("struct", struct {
+		FieldOne string
+		FieldTwo int
+	}{"value1", 24}))
+}
