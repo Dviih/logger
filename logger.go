@@ -152,3 +152,11 @@ func (logger *Logger) write(v interface{}) error {
 	return nil
 }
 
+func New(writer io.Writer, time string, level slog.Level) *Logger {
+	return &Logger{
+		writer:     writer,
+		time:       time,
+		level:      level,
+		attributes: Array.New[slog.Attr](),
+	}
+}
