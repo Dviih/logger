@@ -26,6 +26,7 @@ import (
 	"io"
 	"log/slog"
 	"sync"
+	"time"
 )
 
 type Logger struct {
@@ -60,6 +61,53 @@ func (logger *Logger) Enabled(ctx context.Context, level slog.Level) bool {
 	}
 
 	return level >= logger.level
+}
+
+func (logger *Logger) Handle(ctx context.Context, record slog.Record) error {
+	if err := ctx.Err(); err != nil {
+		return err
+	}
+
+	defer m.Unlock()
+	m.Lock()
+
+	if err := logger.write("\033[33m" + time.Now().UTC().Format(logger.time) + " "); err != nil {
+		return err
+	}
+
+	switch record.Level {
+	case slog.LevelDebug:
+		if err := logger.write(debug); err != nil {
+			return err
+		}
+	case slog.LevelInfo:
+		if err := logger.write(info); err != nil {
+			return err
+		}
+	case slog.LevelWarn:
+		if err := logger.write(warn); err != nil {
+			return err
+		}
+	case slog.LevelError:
+		if err := logger.write(_error); err != nil {
+			return err
+		}
+	}
+
+	if err := logger.write(record.Message + "\u001B[0m"); err != nil {
+		return err
+	}
+
+	record.AddAttrs(logger.attributes.Array()...)
+	record.Attrs(func(attribute slog.Attr) bool {
+		return logger.attrs("", attribute) == nil
+	})
+
+	if err := logger.write(byte('\n')); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (logger *Logger) WithAttrs(attrs []slog.Attr) slog.Handler {
