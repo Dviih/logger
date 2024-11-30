@@ -33,5 +33,9 @@
 - **WithAttrs**: pushes attributes into `logger.attributes`
 - **WithGroup**: groups a slog but rather add a prefix to it.
 - **write**: writes string, byte(s) to writer and handles errors and size.
+- **attrs**: main attribute writer, for slog kinds it is as it is but for Go's standard it uses `reflect`.
 - **attr1**: used to parse name and arrows (used to not repeat code at all).
+- **attr2**: real writing bound with `reflect`.
+
+---
 #### Made for Gophers by @Dviih

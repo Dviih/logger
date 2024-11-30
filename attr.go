@@ -26,6 +26,53 @@ import (
 	"time"
 )
 
+func (logger *Logger) attrs(s string, attribute slog.Attr) error {
+	switch attribute.Value.Kind() {
+	case slog.KindAny, slog.KindBool, slog.KindFloat64, slog.KindInt64, slog.KindString, slog.KindUint64:
+		if err := logger.attr2(s, attribute); err != nil {
+			return err
+		}
+
+		return nil
+	case slog.KindDuration:
+		if err := logger.attr1(s, attribute); err != nil {
+			return err
+		}
+
+		if err := logger.write([]byte("\u001B[33m" + attribute.Value.Duration().String())); err != nil {
+			return err
+		}
+
+		return nil
+	case slog.KindTime:
+		if err := logger.attr1(s, attribute); err != nil {
+			return err
+		}
+
+		if err := logger.write([]byte("\u001B[33m" + attribute.Value.Time().Format(time.RFC822))); err != nil {
+			return err
+		}
+
+		return nil
+	case slog.KindGroup:
+		for _, attr := range attribute.Value.Group() {
+			if err := logger.attrs(prefix(s, attribute.Key), attr); err != nil {
+				return err
+			}
+		}
+
+		return nil
+	case slog.KindLogValuer:
+		if err := logger.attrs(s, slog.Any(attribute.Key, attribute.Value.LogValuer().LogValue())); err != nil {
+			return err
+		}
+
+		return nil
+	}
+
+	return nil
+}
+
 func (logger *Logger) attr1(s string, attribute slog.Attr) error {
 	if err := logger.write(" \u001B[0;32m"); err != nil {
 		return err
