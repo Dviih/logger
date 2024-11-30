@@ -39,4 +39,25 @@
 - **attr2**: real writing bound with `reflect`.
 
 ---
+
+## Example
+
+```go
+package main
+
+import (
+	"github.com/Dviih/logger"
+	"log/slog"
+	"os"
+)
+
+func main() {
+	s := slog.New(logger.New(os.Stdout, logger.Time, slog.LevelInfo))
+	
+	s.Info("Hello, World!")
+}
+```
+
+---
+
 #### Made for Gophers by @Dviih
