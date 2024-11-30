@@ -24,8 +24,11 @@ const (
 )
 
 var (
+	m sync.Mutex
+
 	debug  = []byte("\033[1;34mDEBUG \033[0m")
 	info   = []byte("\033[1;36mINFO \033[0m")
 	warn   = []byte("\033[1;31mWARN \033[0m")
 	_error = []byte("\033[1;91mERROR \033[0m")
 
+)
