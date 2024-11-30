@@ -3,6 +3,8 @@
 
 ---
 
+## Constants and Variables
+- **Time**: default time formating for logger based on `time.RFC822`.
 ## Functions
 - **prefix**: group and attributes names for children of them.
 
