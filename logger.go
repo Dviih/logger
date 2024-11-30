@@ -61,3 +61,12 @@ func (logger *Logger) Enabled(ctx context.Context, level slog.Level) bool {
 	return level >= logger.level
 }
 
+func (logger *Logger) WithAttrs(attrs []slog.Attr) slog.Handler {
+	l := *logger
+
+	l.attributes = Array.New[slog.Attr]()
+	l.attributes.Append(append(logger.attributes.Array(), attrs...)...)
+
+	return &l
+}
+
