@@ -31,4 +31,7 @@ var (
 	warn   = []byte("\033[1;31mWARN \033[0m")
 	_error = []byte("\033[1;91mERROR \033[0m")
 
+	_true  = []byte("\u001B[0;32mtrue")
+	_false = []byte("\u001B[0;31mfalse")
 )
+
