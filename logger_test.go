@@ -54,3 +54,7 @@ func TestLoggerComplex(t *testing.T) {
 	test.Debug("a complex number", slog.Any("number", complex(13, 256)))
 }
 
+func TestLoggerSlice(t *testing.T) {
+	test.Warn("a slice of uint64", slog.Any("numbers", []uint64{128, 256, 512, 1024}))
+}
+
