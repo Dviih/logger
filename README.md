@@ -27,4 +27,6 @@
 - **attributes**: array of additional attributes.
 - **group**: slog group name.
 
+### Methods
+- **Enabled**: returns if requested level can be printed compared to `logger.level`.
 #### Made for Gophers by @Dviih

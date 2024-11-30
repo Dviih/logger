@@ -20,6 +20,7 @@
 package logger
 
 import (
+	"context"
 	"github.com/Dviih/Array"
 	"io"
 	"log/slog"
@@ -51,4 +52,12 @@ var (
 	_true  = []byte("\u001B[0;32mtrue")
 	_false = []byte("\u001B[0;31mfalse")
 )
+
+func (logger *Logger) Enabled(ctx context.Context, level slog.Level) bool {
+	if ctx.Err() != nil {
+		return false
+	}
+
+	return level >= logger.level
+}
 
