@@ -62,3 +62,9 @@ func TestLoggerChan(t *testing.T) {
 	test.Info("a channel", slog.Any("chan", make(chan int, 64)))
 }
 
+func TestLoggerFunc(t *testing.T) {
+	test.Error("a function", slog.Any("func", func() string {
+		return message
+	}))
+}
+
