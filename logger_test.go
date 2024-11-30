@@ -45,3 +45,8 @@ func TestLoggerError(t *testing.T) {
 	test.Error(message)
 }
 
+func TestLoggerUintptr(t *testing.T) {
+	i := 13
+	test.Info("a uintptr", slog.Any("pointer", unsafe.Pointer(&i)))
+}
+
