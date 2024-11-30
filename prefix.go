@@ -19,3 +19,10 @@
 
 package logger
 
+func prefix(c, n string) string {
+	if c == "" {
+		return n
+	}
+
+	return c + "." + n
+}
