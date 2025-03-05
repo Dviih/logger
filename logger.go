@@ -1,6 +1,6 @@
 /*
  *     A colored handler for slog.
- *     Copyright (C) 2024  Dviih
+ *     Copyright (C) 2025  Dviih
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Affero General Public License as published
@@ -53,6 +53,9 @@ var (
 
 	_true  = []byte("\u001B[0;32mtrue")
 	_false = []byte("\u001B[0;31mfalse")
+
+	ErrorWhileWriting = errors.New("error while writing to writer")
+	ErrorInvalidInput = errors.New("invalid input, input must be either string or byte(s)")
 )
 
 func (logger *Logger) Enabled(ctx context.Context, level slog.Level) bool {
