@@ -210,6 +210,11 @@ func (logger *Logger) attr2(s string, attribute slog.Attr) error {
 	case reflect.Struct:
 		for i := 0; i < value.NumField(); i++ {
 			ft := value.Type().Field(i)
+
+			if !ft.IsExported() {
+				continue
+			}
+
 				return err
 			}
 		}
