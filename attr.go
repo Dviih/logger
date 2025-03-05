@@ -1,6 +1,6 @@
 /*
  *     A colored handler for slog.
- *     Copyright (C) 2024  Dviih
+ *     Copyright (C) 2025  Dviih
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Affero General Public License as published
@@ -209,7 +209,13 @@ func (logger *Logger) attr2(s string, attribute slog.Attr) error {
 		}
 	case reflect.Struct:
 		for i := 0; i < value.NumField(); i++ {
-			if err := logger.attrs(prefix(s, attribute.Key), slog.Any(value.Type().Field(i).Name, value.Field(i).Interface())); err != nil {
+			ft := value.Type().Field(i)
+
+			if !ft.IsExported() {
+				continue
+			}
+
+			if err := logger.attrs(prefix(s, attribute.Key), slog.Any(ft.Name, value.Field(i).Interface())); err != nil {
 				return err
 			}
 		}

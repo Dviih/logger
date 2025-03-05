@@ -1,6 +1,6 @@
 /*
  *     A colored handler for slog.
- *     Copyright (C) 2024  Dviih
+ *     Copyright (C) 2025  Dviih
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Affero General Public License as published
@@ -78,7 +78,8 @@ func TestLoggerMap(t *testing.T) {
 
 func TestLoggerStruct(t *testing.T) {
 	test.Warn("a struct", slog.Any("struct", struct {
-		FieldOne string
-		FieldTwo int
-	}{"value1", 24}))
+		FieldOne   string
+		FieldTwo   int
+		unexported int
+	}{"value1", 24, 13}))
 }
