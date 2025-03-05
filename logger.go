@@ -149,7 +149,7 @@ func (logger *Logger) write(v interface{}) error {
 	}
 
 	if n != len(data) {
-		return errors.New("wrote less")
+		return ErrorWhileWriting
 	}
 
 	return nil
