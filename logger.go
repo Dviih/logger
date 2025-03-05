@@ -140,7 +140,7 @@ func (logger *Logger) write(v interface{}) error {
 	case string:
 		data = []byte(v)
 	default:
-		panic("not string or byte(s)")
+		return ErrorInvalidInput
 	}
 
 	n, err := logger.writer.Write(data)
