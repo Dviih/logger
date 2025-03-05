@@ -215,6 +215,7 @@ func (logger *Logger) attr2(s string, attribute slog.Attr) error {
 				continue
 			}
 
+			if err := logger.attrs(prefix(s, attribute.Key), slog.Any(ft.Name, value.Field(i).Interface())); err != nil {
 				return err
 			}
 		}
