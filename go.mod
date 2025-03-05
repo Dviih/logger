@@ -1,6 +1,6 @@
 module github.com/Dviih/logger
 
-go 1.23
+go 1.24
 
 require (
 	github.com/Dviih/Array v1.4.0 // indirect
