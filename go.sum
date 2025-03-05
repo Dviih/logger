@@ -1,4 +1,2 @@
-github.com/Dviih/Array v1.4.0 h1:/Clz+kWStqVDEFYFltCSqK+ER+0zCMXyq9pP5U/IMlw=
-github.com/Dviih/Array v1.4.0/go.mod h1:Y/Hz+OvZD67qAWUXvS5HrYhL9EUjUzilAn8s1NMLkls=
-github.com/Dviih/Channel v1.4.0 h1:5iEAL/2YUaE+sFcQQxjGyZSKrdAWqj9s1ENZnfM1ajg=
-github.com/Dviih/Channel v1.4.0/go.mod h1:IVlLDHydTUDHvLRzk9j7anL/T++wrM10mYXGZZgo0OI=
+github.com/Dviih/sync v0.0.0-20250201154027-e7e915a5c8c2 h1:fasMG+cL1Brikc6AqEEllYM0rfkC9k+y/2RTRpz3PNA=
+github.com/Dviih/sync v0.0.0-20250201154027-e7e915a5c8c2/go.mod h1:mj5YklTWxlUZkzCLpoLafQRvLHLdjg/vk7FcD5eS3xQ=

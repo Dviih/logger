@@ -22,10 +22,9 @@ package logger
 import (
 	"context"
 	"errors"
-	"github.com/Dviih/Array"
+	"github.com/Dviih/sync"
 	"io"
 	"log/slog"
-	"sync"
 	"time"
 )
 
@@ -35,7 +34,7 @@ type Logger struct {
 	time  string
 	level slog.Level
 
-	attributes *Array.Array[slog.Attr]
+	attributes *sync.Slice[slog.Attr]
 	group      []byte
 }
 
@@ -98,7 +97,7 @@ func (logger *Logger) Handle(ctx context.Context, record slog.Record) error {
 		return err
 	}
 
-	record.AddAttrs(logger.attributes.Array()...)
+	record.AddAttrs(logger.attributes.Slice()...)
 	record.Attrs(func(attribute slog.Attr) bool {
 		return logger.attrs("", attribute) == nil
 	})
@@ -113,8 +112,8 @@ func (logger *Logger) Handle(ctx context.Context, record slog.Record) error {
 func (logger *Logger) WithAttrs(attrs []slog.Attr) slog.Handler {
 	l := *logger
 
-	l.attributes = Array.New[slog.Attr]()
-	l.attributes.Append(append(logger.attributes.Array(), attrs...)...)
+	l.attributes = &sync.Slice[slog.Attr]{}
+	l.attributes.Append(append(logger.attributes.Slice(), attrs...)...)
 
 	return &l
 }
@@ -157,6 +156,6 @@ func New(writer io.Writer, time string, level slog.Level) *Logger {
 		writer:     writer,
 		time:       time,
 		level:      level,
-		attributes: Array.New[slog.Attr](),
+		attributes: &sync.Slice[slog.Attr]{},
 	}
 }
